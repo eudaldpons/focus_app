@@ -15,9 +15,9 @@ import "../../../../exports.dart";
 
 class TaskItem extends StatelessWidget {
   const TaskItem({
-    Key? key,
+    super.key,
     required this.task,
-  }) : super(key: key);
+  });
 
   final TaskEntity task;
 
@@ -30,7 +30,7 @@ class TaskItem extends StatelessWidget {
       onTap: () {
         showModalBottomSheet(
           context: context,
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           elevation: 20,
           isScrollControlled: true,
           builder: (context) {

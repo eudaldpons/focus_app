@@ -9,7 +9,7 @@ import "../../domain/entities/language_entity.dart";
 import "../blocs/settings_bloc/settings_bloc.dart";
 
 class ChangeLanguageBottomSheet extends StatelessWidget {
-  const ChangeLanguageBottomSheet({Key? key}) : super(key: key);
+  const ChangeLanguageBottomSheet({super.key});
 
   Future<void> bottomSheet(BuildContext context, Widget? child) =>
       showModalBottomSheet<void>(
@@ -18,7 +18,7 @@ class ChangeLanguageBottomSheet extends StatelessWidget {
           return Container(
               height: SizeConfig.heightMultiplier * 90,
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.background,
+                color: Theme.of(context).colorScheme.surface,
               ),
               child: child ?? Container());
         },

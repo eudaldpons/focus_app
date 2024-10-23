@@ -37,7 +37,7 @@ class AddHabitPage extends StatelessWidget {
 }
 
 class AddHabitView extends HookWidget {
-  const AddHabitView({Key? key, this.item, this.habits}) : super(key: key);
+  const AddHabitView({super.key, this.item, this.habits});
 
   final HabitEntity? item;
   final List<HabitEntity>? habits;
@@ -116,14 +116,14 @@ class AddHabitView extends HookWidget {
                               AppConstant.radius,
                             ),
                             color: selectedIcon.value == index
-                                ? Theme.of(context).colorScheme.onBackground
+                                ? Theme.of(context).colorScheme.onSurface
                                 : Colors.transparent,
                           ),
                           padding: const EdgeInsets.all(8.0),
                           child: Icon(
                             iconList[index],
                             color: selectedIcon.value == index
-                                ? Theme.of(context).colorScheme.background
+                                ? Theme.of(context).colorScheme.surface
                                 : null,
                           ),
                         ),
@@ -150,7 +150,7 @@ class AddHabitView extends HookWidget {
                               AppConstant.radius,
                             ),
                             color: selectedColor.value == index
-                                ? Theme.of(context).colorScheme.onBackground
+                                ? Theme.of(context).colorScheme.onSurface
                                 : Colors.transparent,
                           ),
                           child: Padding(

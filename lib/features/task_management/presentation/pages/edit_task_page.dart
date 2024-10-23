@@ -18,7 +18,7 @@ import "../../domain/entities/task_entity.dart";
 import "../blocs/tasks_bloc/tasks_bloc.dart";
 
 class EditTaskPage extends StatelessWidget {
-  const EditTaskPage({Key? key, required this.task}) : super(key: key);
+  const EditTaskPage({super.key, required this.task});
 
   static const routeName = "/editTask";
 
@@ -36,7 +36,7 @@ class EditTaskPage extends StatelessWidget {
 }
 
 class EditTaskView extends HookWidget {
-  const EditTaskView({Key? key, required this.task}) : super(key: key);
+  const EditTaskView({super.key, required this.task});
 
   final TaskEntity task;
 
@@ -114,7 +114,7 @@ class EditTaskView extends HookWidget {
                       height: SizeConfig.heightMultiplier * 5,
                       decoration: BoxDecoration(
                         border: Border.all(
-                            color: Theme.of(context).colorScheme.onBackground),
+                            color: Theme.of(context).colorScheme.onSurface),
                         borderRadius: BorderRadius.circular(AppConstant.radius),
                       ),
                       child: TextButton(
@@ -123,7 +123,7 @@ class EditTaskView extends HookWidget {
                             context: context,
                             builder: (_) => Container(
                               height: 500,
-                              color: Theme.of(context).colorScheme.background,
+                              color: Theme.of(context).colorScheme.surface,
                               child: Column(
                                 children: [
                                   SizedBox(

@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 
 class GlobalButton extends StatelessWidget {
   const GlobalButton({
-    Key? key,
+    super.key,
     this.child,
     required this.onPressed,
     this.width,
@@ -13,7 +13,7 @@ class GlobalButton extends StatelessWidget {
     this.backgroundColor,
     this.title,
     this.titleStyle,
-  }) : super(key: key);
+  });
 
   final VoidCallback onPressed;
   final Widget? child;

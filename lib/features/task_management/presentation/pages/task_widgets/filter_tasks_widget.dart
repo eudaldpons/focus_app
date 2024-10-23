@@ -40,18 +40,18 @@ class FilterTasksWidget extends StatelessWidget {
                   margin: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     color: (index == 0)
-                        ? Theme.of(context).colorScheme.onBackground
+                        ? Theme.of(context).colorScheme.onSurface
                         : null,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   child: Text(
                     "All Tasks",
                     style: TextStyle(
                       color: (index == 0)
-                          ? Theme.of(context).colorScheme.background
+                          ? Theme.of(context).colorScheme.surface
                           : null,
                     ),
                   ),
@@ -71,18 +71,18 @@ class FilterTasksWidget extends StatelessWidget {
                   margin: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     color: (index == 1)
-                        ? Theme.of(context).colorScheme.onBackground
+                        ? Theme.of(context).colorScheme.onSurface
                         : null,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   child: Text(
                     "UnCompleted",
                     style: TextStyle(
                       color: (index == 1)
-                          ? Theme.of(context).colorScheme.background
+                          ? Theme.of(context).colorScheme.surface
                           : null,
                     ),
                   ),
@@ -102,18 +102,18 @@ class FilterTasksWidget extends StatelessWidget {
                   margin: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                     color: (index == 2)
-                        ? Theme.of(context).colorScheme.onBackground
+                        ? Theme.of(context).colorScheme.onSurface
                         : null,
                     borderRadius: BorderRadius.circular(20),
                     border: Border.all(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   ),
                   child: Text(
                     "Completed",
                     style: TextStyle(
                       color: (index == 2)
-                          ? Theme.of(context).colorScheme.background
+                          ? Theme.of(context).colorScheme.surface
                           : null,
                     ),
                   ),

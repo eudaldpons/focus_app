@@ -1,6 +1,6 @@
-import "package:bloc/bloc.dart";
 import "package:dartz/dartz.dart";
 import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:pomodore/core/resources/params/no_params.dart";
 import "package:pomodore/features/habit_tracking/domain/entities/habit_entity.dart";
 import "package:pomodore/features/habit_tracking/domain/usecases/add_new_habit_usecase.dart";
@@ -36,7 +36,7 @@ class HabitTrackerBloc extends Bloc<HabitTrackerEvent, HabitTrackerState> {
     on<HabitDone>(_habitDone);
   }
 
-  _habitUpdated(HabitUpdated event, emit) async {
+  void _habitUpdated(HabitUpdated event, emit) async {
     emit(const EditHabit(loading: true, error: false, habits: []));
 
     Either result = await editHabitUseCase.call(params: event.updatedHabit);
@@ -56,7 +56,7 @@ class HabitTrackerBloc extends Bloc<HabitTrackerEvent, HabitTrackerState> {
     );
   }
 
-  _habitDone(HabitDone event, emit) async {
+  void _habitDone(HabitDone event, emit) async {
     emit(const DoneHabit(true, false, []));
 
     Either<String, HabitEntity> result =
@@ -77,7 +77,7 @@ class HabitTrackerBloc extends Bloc<HabitTrackerEvent, HabitTrackerState> {
     );
   }
 
-  _allHabitFetched(event, emit) async {
+  void _allHabitFetched(event, emit) async {
     emit(const FetchHabits(habits: [], loading: true, error: false));
 
     Either result = await getAllHabitUseCase.call();
@@ -100,7 +100,7 @@ class HabitTrackerBloc extends Bloc<HabitTrackerEvent, HabitTrackerState> {
     );
   }
 
-  _habitAdded(event, emit) async {
+  void _habitAdded(event, emit) async {
     emit(const AddHabit(loading: true, error: false));
 
     Either result = await addNewHabitUseCase.call(params: event.params);
@@ -120,7 +120,7 @@ class HabitTrackerBloc extends Bloc<HabitTrackerEvent, HabitTrackerState> {
             ));
   }
 
-  _habitDeleted(event, emit) async {
+  void _habitDeleted(event, emit) async {
     emit(const DeleteHabit(habits: [], loading: true, error: false));
 
     Either<String, NoParams> result =

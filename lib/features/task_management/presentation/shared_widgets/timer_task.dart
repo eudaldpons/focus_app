@@ -11,12 +11,11 @@ import "../../../../exports.dart";
 
 class TimerTask extends StatelessWidget {
   const TimerTask(
-      {Key? key,
+      {super.key,
       required this.title,
       required this.count,
       required this.targetCount,
-      required this.totalTime})
-      : super(key: key);
+      required this.totalTime});
 
   final String title;
   final double totalTime;
@@ -78,7 +77,7 @@ class TimerTask extends StatelessWidget {
 }
 
 class SelectATaskToStart extends StatelessWidget {
-  const SelectATaskToStart({Key? key}) : super(key: key);
+  const SelectATaskToStart({super.key});
 
   @override
   Widget build(BuildContext context) {

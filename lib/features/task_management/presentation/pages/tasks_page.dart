@@ -14,7 +14,7 @@ import "../../domain/entities/task_entity.dart";
 import "../shared_widgets/task_item.dart";
 
 class TasksPage extends StatelessWidget {
-  const TasksPage({Key? key}) : super(key: key);
+  const TasksPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class TasksPage extends StatelessWidget {
 }
 
 class TaskView extends StatefulWidget {
-  const TaskView({Key? key}) : super(key: key);
+  const TaskView({super.key});
 
   @override
   State<TaskView> createState() => _TaskViewState();

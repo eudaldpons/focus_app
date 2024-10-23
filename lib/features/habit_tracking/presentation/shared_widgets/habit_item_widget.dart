@@ -200,7 +200,7 @@ class HabitItemWidget extends HookWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Theme.of(context).colorScheme.background,
+          backgroundColor: Theme.of(context).colorScheme.surface,
           title: const Text("Delete Confirmation"),
           content: const Text("Are you sure you want to delete this item?"),
           actions: <Widget>[

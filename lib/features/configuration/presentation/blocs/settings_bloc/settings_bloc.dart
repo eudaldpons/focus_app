@@ -1,8 +1,8 @@
 
-import "package:bloc/bloc.dart";
 import "package:dartz/dartz.dart";
 import "package:equatable/equatable.dart";
 import "package:flutter/material.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:pomodore/core/resources/params/settings_params.dart";
 import "package:pomodore/features/configuration/domain/entities/settings_entity.dart";
 import "package:pomodore/features/configuration/domain/usecases/change_theme_usecase.dart";
@@ -42,7 +42,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     on<ThemeChanged>(_themeChanged);
   }
 
-  _themeChanged(ThemeChanged event, Emitter emit) async {
+  void _themeChanged(ThemeChanged event, Emitter emit) async {
     emit(ChangeThemeLoading());
     final Either<String, ThemeData>? theme =
         await changeThemeUseCase.call(params: event.themeParams);
@@ -57,7 +57,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     }
   }
 
-  _localeFetched(InitDataFetched event, Emitter emit) async {
+  void _localeFetched(InitDataFetched event, Emitter emit) async {
     final Either<String, String> result = await getLocaleUseCase.call();
     final Either<String, ThemeData> themeResult = await getThemeUseCase.call();
     result.fold((l) => emit(InitDataFetchFailure()), (r) {
@@ -70,7 +70,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     });
   }
 
-  _settingsChanged(SettingsChanged event, Emitter emit) async {
+  void _settingsChanged(SettingsChanged event, Emitter emit) async {
     emit(SettingFetchingLoading());
     final Either<String, SettingsEntity> result =
         await changeSettingsUseCase.call(params: event.params);
@@ -80,7 +80,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     );
   }
 
-  _settingsFromDeviceFetched(
+  void _settingsFromDeviceFetched(
       SettingsFromDeviceFetched event, Emitter emit) async {
     emit(SettingFetchingLoading());
 
@@ -92,7 +92,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     );
   }
 
-  _languageChanged(LocaleChanged event, Emitter emit) async {
+  void _languageChanged(LocaleChanged event, Emitter emit) async {
     await changeLocaleUseCase.call(params: event.local);
     emit(ChangeLanguageSuccess(Locale(event.local)));
   }

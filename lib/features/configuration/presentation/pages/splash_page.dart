@@ -8,7 +8,7 @@ import "package:pomodore/core/utils/responsive/size_config.dart";
 import "base_page.dart";
 
 class SplashPage extends HookWidget {
-  const SplashPage({Key? key}) : super(key: key);
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {

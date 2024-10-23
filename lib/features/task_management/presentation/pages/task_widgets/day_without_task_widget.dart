@@ -10,7 +10,7 @@ import "package:pomodore/features/task_management/presentation/pages/add_task_pa
 import "../../../../../exports.dart";
 
 class DayWithoutTask extends StatelessWidget {
-  const DayWithoutTask({Key? key}) : super(key: key);
+  const DayWithoutTask({super.key});
 
   @override
   Widget build(BuildContext context) {

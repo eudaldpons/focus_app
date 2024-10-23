@@ -5,7 +5,7 @@ import "package:pomodore/core/utils/responsive/size_config.dart";
 import "package:pomodore/features/task_management/presentation/blocs/timer_bloc/timer_bloc.dart";
 
 class TimerButtons extends StatelessWidget {
-  const TimerButtons({Key? key}) : super(key: key);
+  const TimerButtons({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,7 @@ class TimerButtons extends StatelessWidget {
                             shape: BoxShape.circle,
                             color: Theme.of(context)
                                 .colorScheme
-                                .onBackground
+                                .onSurface
                                 .withOpacity(.2),
                           ),
                           child: Icon(
@@ -92,11 +92,11 @@ class TimerButtons extends StatelessWidget {
                 padding: const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).colorScheme.onBackground,
+                  color: Theme.of(context).colorScheme.onSurface,
                 ),
                 child: Icon(
                   Icons.stop,
-                  color: Theme.of(context).colorScheme.background,
+                  color: Theme.of(context).colorScheme.surface,
                   size: 30,
                 ),
               ),

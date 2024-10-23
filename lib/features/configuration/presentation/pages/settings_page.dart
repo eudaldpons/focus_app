@@ -14,7 +14,7 @@ import "../widgets/change_language_bottom_sheet.dart";
 import "../widgets/change_theme_bottom_sheet.dart";
 
 class SettingsPage extends StatelessWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class SettingsPage extends StatelessWidget {
 }
 
 class SettingsView extends StatelessWidget {
-  const SettingsView({Key? key}) : super(key: key);
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ import "../../../../exports.dart";
 import "../../domain/entities/analysis_entity.dart";
 
 class AnalysisPage extends StatelessWidget {
-  const AnalysisPage({Key? key}) : super(key: key);
+  const AnalysisPage({super.key});
 
   static const routeName = "/analyze";
 
@@ -29,7 +29,7 @@ class AnalysisPage extends StatelessWidget {
 }
 
 class AnalysisView extends StatelessWidget {
-  const AnalysisView({Key? key}) : super(key: key);
+  const AnalysisView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class AnalysisView extends StatelessWidget {
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: const BorderRadius.vertical(
             top: Radius.circular(30),
           ),
@@ -167,7 +167,7 @@ class AnalysisView extends StatelessWidget {
                               textDirection: TextDirection.ltr,
                               child: HeatMap(
                                 textColor:
-                                    Theme.of(context).colorScheme.onBackground,
+                                    Theme.of(context).colorScheme.onSurface,
                                 size: 22,
                                 scrollable: true,
                                 fontSize: 9,
@@ -177,7 +177,7 @@ class AnalysisView extends StatelessWidget {
                                             Brightness.dark
                                         ? Theme.of(context)
                                             .colorScheme
-                                            .onBackground
+                                            .onSurface
                                             .withOpacity(.1)
                                         : null,
                                 colorMode: ColorMode.opacity,

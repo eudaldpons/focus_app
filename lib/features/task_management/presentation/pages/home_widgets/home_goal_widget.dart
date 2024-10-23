@@ -9,7 +9,7 @@ import "../../../../../core/utils/utils.dart";
 import "../../../../../exports.dart";
 
 class HomeGoalWidget extends StatelessWidget {
-  const HomeGoalWidget({Key? key}) : super(key: key);
+  const HomeGoalWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

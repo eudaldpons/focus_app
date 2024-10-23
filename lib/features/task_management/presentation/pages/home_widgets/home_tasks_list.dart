@@ -13,7 +13,7 @@ import "../../../domain/entities/task_entity.dart";
 import "../../shared_widgets/home_task_item.dart";
 
 class HomeTasksList extends StatelessWidget {
-  const HomeTasksList({Key? key}) : super(key: key);
+  const HomeTasksList({super.key});
 
   @override
   Widget build(BuildContext context) {

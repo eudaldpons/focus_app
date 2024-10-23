@@ -1,6 +1,6 @@
-import "package:bloc/bloc.dart";
 import "package:dartz/dartz.dart";
 import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:pomodore/core/resources/enums/tasks_filter_enums.dart";
 import "package:pomodore/core/resources/params/task_params.dart";
 import "package:pomodore/features/task_management/domain/entities/task_entity.dart";
@@ -43,7 +43,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     emit(AddDateSuccess(event.dateTime));
   }
 
-  _taskFiltered(TasksFiltered event, emit) {
+  void _taskFiltered(TasksFiltered event, emit) {
     List<TaskEntity> filteredList = [];
 
     if (event.filterMode == TasksFilterEnum.all) {
@@ -61,7 +61,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     }
   }
 
-  _taskEdited(TaskEdited event, Emitter emit) async {
+  void _taskEdited(TaskEdited event, Emitter emit) async {
     emit(EditTaskLoading());
 
     final Either<String, String> result =
@@ -73,7 +73,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     );
   }
 
-  _taskDeleted(TaskDeleted event, Emitter<TasksState> emit) async {
+  void _taskDeleted(TaskDeleted event, Emitter<TasksState> emit) async {
     emit(TaskDeleteLoading());
 
     final Either<String, String> result =
@@ -84,7 +84,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     );
   }
 
-  _taskCompleted(TaskCompleted event, Emitter<TasksState> emit) async {
+  void _taskCompleted(TaskCompleted event, Emitter<TasksState> emit) async {
     emit(TaskCompleteLoading());
 
     final Either<String, String> result =
@@ -96,7 +96,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     );
   }
 
-  _todayTasksFetched(AllTasksFetched event, Emitter<TasksState> emit) async {
+  void _todayTasksFetched(AllTasksFetched event, Emitter<TasksState> emit) async {
     emit(GetAllTasksLoading());
 
     final Either<String, List<TaskEntity>> result =
@@ -107,7 +107,7 @@ class TasksBloc extends Bloc<TasksEvent, TasksState> {
     );
   }
 
-  _taskAdded(TaskAdded event, Emitter<TasksState> emit) async {
+  void _taskAdded(TaskAdded event, Emitter<TasksState> emit) async {
     emit(TaskAddLoading());
 
     final Either<String, bool> result =

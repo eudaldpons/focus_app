@@ -1,6 +1,6 @@
-import "package:bloc/bloc.dart";
 import "package:dartz/dartz.dart";
 import "package:equatable/equatable.dart";
+import "package:flutter_bloc/flutter_bloc.dart";
 import "package:pomodore/features/task_management/domain/entities/daily_information_entity.dart";
 import "package:pomodore/features/task_management/domain/usecases/get_uncompleted_tasks_usecase.dart";
 
@@ -32,7 +32,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<DailyGoalUpdated>(_dailyGoalUpdated);
   }
 
-  _dailyGoalUpdated(DailyGoalUpdated event, Emitter emit) async {
+  void _dailyGoalUpdated(DailyGoalUpdated event, Emitter emit) async {
     emit(UpdateDailyGoalLoading());
     int value = event.value;
     if (value < 1) {
@@ -41,7 +41,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(UpdateDailyGoalSuccess(value));
   }
 
-  _dailyGoalSaved(DailyGoalSaved event, Emitter emit) async {
+  void _dailyGoalSaved(DailyGoalSaved event, Emitter emit) async {
     emit(SaveDailyGoalLoading());
     final Either<String, bool> result =
         await saveDailyGoalUseCase.call(params: event.count);
@@ -52,7 +52,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
-  _dailyGoalChecked(DailyGoalChecked event, Emitter emit) async {
+  void _dailyGoalChecked(DailyGoalChecked event, Emitter emit) async {
     emit(CheckDailyGoalLoading());
     final Either<String, bool> result = await checkDailyGoalUseCase.call();
 
@@ -62,7 +62,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
-  _onFetchHomeData(HomeDataFetched event, Emitter emit) async {
+  void _onFetchHomeData(HomeDataFetched event, Emitter emit) async {
     emit(FetchHomeDataLoading());
 
     final Either<String, List<TaskEntity>> tasks =

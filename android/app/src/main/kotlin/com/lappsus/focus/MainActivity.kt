@@ -1,4 +1,4 @@
-package im.mahmoud.pomodoro
+package com.lappsus.focus
 
 import io.flutter.embedding.android.FlutterActivity
 

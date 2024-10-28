@@ -5,7 +5,6 @@ import "package:pomodore/core/extensions/sized_box_extension.dart";
 import "package:pomodore/core/shared_widgets/global_button.dart";
 import "package:pomodore/features/configuration/presentation/blocs/base_bloc/base_bloc.dart";
 import "package:pomodore/features/task_management/domain/entities/task_entity.dart";
-import "package:pomodore/features/task_management/presentation/blocs/timer_bloc/timer_bloc.dart";
 
 import "../../../../core/utils/responsive/size_config.dart";
 import "../../../../core/utils/utils.dart";
@@ -72,7 +71,6 @@ class HomeTaskItem extends StatelessWidget {
                   width: SizeConfig.widthMultiplier * 14,
                   height: SizeConfig.widthMultiplier * 14,
                   onPressed: () {
-                    context.read<TimerBloc>().add(TimerTaskSelected(item));
                     context.read<BaseBloc>().add(const PageIndexChanged(3));
                   },
                   shape: RoundedRectangleBorder(

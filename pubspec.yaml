@@ -63,6 +63,7 @@ dependencies:
   audio_manager: ^0.8.2
   audioplayers: ^6.1.0
   change_app_package_name: ^1.4.0
+  flutter_countdown_timer: ^4.1.0
 
 dev_dependencies:
   test: ^1.16.0
@@ -88,6 +89,7 @@ flutter:
   assets:
     - assets/images/
     - assets/sounds/
+    - assets/quotes.json
 
   fonts:
     - family: sspro

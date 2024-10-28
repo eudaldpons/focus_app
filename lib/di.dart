@@ -31,10 +31,7 @@ import "package:pomodore/features/habit_tracking/domain/usecases/get_all_habits_
 import "package:pomodore/features/habit_tracking/presentation/blocs/habit_tracker_bloc/habit_tracker_bloc.dart";
 import "package:pomodore/features/task_management/data/data_sources/timer_local_data_source.dart";
 import "package:pomodore/features/task_management/data/repositories/task_repository_impl.dart";
-import "package:pomodore/features/task_management/data/repositories/timer_repository_impl.dart";
 import "package:pomodore/features/task_management/domain/repositories/task_repository.dart";
-import "package:pomodore/features/task_management/domain/repositories/timer_repository.dart";
-import "package:pomodore/features/task_management/domain/usecases/add_pomodoro_to_db_usecase.dart";
 import "package:pomodore/features/task_management/domain/usecases/add_task_usecase.dart";
 import "package:pomodore/features/task_management/domain/usecases/check_daily_goal_usecase.dart";
 import "package:pomodore/features/task_management/domain/usecases/complete_task_usecase.dart";
@@ -44,14 +41,10 @@ import "package:pomodore/features/task_management/domain/usecases/get_all_tasks.
 import "package:pomodore/features/task_management/domain/usecases/get_analysis_usecase.dart";
 import "package:pomodore/features/task_management/domain/usecases/get_daily_information_usecase.dart";
 import "package:pomodore/features/task_management/domain/usecases/get_specific_date_tasks_usecase.dart";
-import "package:pomodore/features/task_management/domain/usecases/get_today_pomodoros_usecase.dart";
-import "package:pomodore/features/task_management/domain/usecases/restore_timer_state_usecase.dart";
 import "package:pomodore/features/task_management/domain/usecases/save_daily_goal_usecase.dart";
-import "package:pomodore/features/task_management/domain/usecases/save_timer_state_usecase.dart";
 import "package:pomodore/features/task_management/presentation/blocs/analysis_bloc/analysis_bloc.dart";
 import "package:pomodore/features/task_management/presentation/blocs/home_bloc/home_bloc.dart";
 import "package:pomodore/features/task_management/presentation/blocs/tasks_bloc/tasks_bloc.dart";
-import "package:pomodore/features/task_management/presentation/blocs/timer_bloc/timer_bloc.dart";
 
 import "core/services/database/collections/pomodoro_collection.dart";
 import "core/services/database/isar_helper.dart";
@@ -104,7 +97,6 @@ Future inject() async {
   // inject repositories
   getIt.registerSingleton<TaskRepository>(TaskRepositoryImpl(getIt()));
   getIt.registerSingleton<SettingsRepository>(SettingsRepositoryImpl(getIt()));
-  getIt.registerSingleton<TimerRepository>(TimerRepositoryImpl(getIt()));
   getIt.registerSingleton<HabitTrackingRepository>(
       HabitTrackingRepositoryImpl(getIt()));
 
@@ -114,10 +106,6 @@ Future inject() async {
       GetSpecificDateTasksUseCase(getIt()));
   getIt.registerSingleton<CompleteTaskUseCase>(CompleteTaskUseCase(getIt()));
   getIt.registerSingleton<DeleteTaskUseCase>(DeleteTaskUseCase(getIt()));
-  getIt.registerSingleton<AddPomodoroToDbUseCase>(
-      AddPomodoroToDbUseCase(getIt()));
-  getIt.registerSingleton<GetTodayPomodorosUseCase>(
-      GetTodayPomodorosUseCase(getIt()));
   getIt.registerSingleton<GetSettingsUseCase>(GetSettingsUseCase(getIt()));
   getIt.registerSingleton<EditTaskUseCase>(EditTaskUseCase(getIt()));
   getIt
@@ -135,10 +123,6 @@ Future inject() async {
   getIt.registerSingleton<SaveDailyGoalUseCase>(SaveDailyGoalUseCase(getIt()));
   getIt
       .registerSingleton<CheckDailyGoalUseCase>(CheckDailyGoalUseCase(getIt()));
-  getIt
-      .registerSingleton<SaveTimerStateUseCase>(SaveTimerStateUseCase(getIt()));
-  getIt.registerSingleton<RestoreTimerStateUseCase>(
-      RestoreTimerStateUseCase(getIt()));
   // habit tracking usecases
   getIt.registerSingleton(AddNewHabitUseCase(getIt()));
   getIt.registerSingleton(DeleteHabitUseCase(getIt()));
@@ -148,12 +132,6 @@ Future inject() async {
 
   // inject blocs
   // global bloc
-  getIt.registerSingleton<TimerBloc>(TimerBloc(
-    ticker: getIt(),
-    restoreTimerStateUseCase: getIt(),
-    saveTimerStateUseCase: getIt(),
-    addPomodoroToDbUseCase: getIt(),
-  ));
   getIt.registerSingleton<BaseBloc>(BaseBloc());
   getIt.registerFactory<SettingsBloc>(() => SettingsBloc(
         getSettingUseCase: getIt(),

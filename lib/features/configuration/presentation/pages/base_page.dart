@@ -8,7 +8,6 @@ import "package:pomodore/features/habit_tracking/presentation/pages/habit_tracki
 import "../../../../exports.dart";
 import "../../../task_management/presentation/pages/home_page.dart";
 import "../../../task_management/presentation/pages/tasks_page.dart";
-import "../../../task_management/presentation/pages/timer_page.dart";
 
 class BasePage extends StatelessWidget {
   BasePage({super.key});
@@ -19,7 +18,7 @@ class BasePage extends StatelessWidget {
     const HomePage(),
     const TasksPage(),
     const HabitTrackingPage(),
-    const TimerPage(),
+    const TasksPage(),
     const SettingsPage(),
   ];
 

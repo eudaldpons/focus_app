@@ -8,15 +8,11 @@ import "package:flutter_gen/gen_l10n/app_localizations.dart";
 import "package:flutter_localizations/flutter_localizations.dart";
 import "package:pomodore/core/constant/constant.dart";
 import "package:pomodore/core/router/router.dart";
-import "package:pomodore/core/services/notification/local_notification.dart";
 import "package:pomodore/di.dart";
 import "package:pomodore/features/configuration/presentation/blocs/base_bloc/base_bloc.dart";
 import "package:pomodore/features/configuration/presentation/blocs/settings_bloc/settings_bloc.dart";
-import "package:pomodore/features/task_management/domain/entities/pomodoro_entity.dart";
-
 import "core/observers/bloc_observer.dart";
 import "core/utils/responsive/size_config.dart";
-import "features/task_management/presentation/blocs/timer_bloc/timer_bloc.dart";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +23,6 @@ void main() async {
   runApp(
     MultiBlocProvider(
       providers: [
-        BlocProvider<TimerBloc>(
-          create: (context) => getIt.get<TimerBloc>(),
-        ),
         BlocProvider<BaseBloc>(
           create: (context) => getIt.get<BaseBloc>(),
         ),
@@ -72,7 +65,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
-    restoreTimerState();
     WidgetsBinding.instance.addObserver(this);
     locale = const Locale("en");
     themeData = AppConstant.defaultLightTheme;
@@ -84,77 +76,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.detached ||
-        state == AppLifecycleState.inactive ||
-        state == AppLifecycleState.paused) {
-      TimerState state = context.read<TimerBloc>().state;
-      if (state is TimerInProgress || state is TimerPause) saveTimerState();
-    }
-  }
-
-  void saveTimerState() {
-    context.read<TimerBloc>().add(const TimerStateSaved());
-  }
-
-  void restoreTimerState() {
-    context.read<TimerBloc>().add(const TimerStateRestored());
-  }
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        BlocListener<TimerBloc, TimerState>(
-          listener: (context, state) {
-            final TimerBloc bloc = context.read<TimerBloc>();
-            if (state is RestoreTimerSuccess) {
-              if (state.timerStateParams.timerDone) {
-                getIt.get<AppLocalNotification>().sendCustomNotification(
-                    "hohoo! 🥰", "You completed a pomodoro");
-                bloc
-                  ..add(
-                    CurrentPomodoroToDatabaseSaved(
-                      PomodoroEntity(
-                        duration: TimerBloc.getDuration,
-                        dateTime: DateTime.now(),
-                      ),
-                      true,
-                    ),
-                  )
-                  ..add(TimerDurationSet(state.timerStateParams.baseDuration));
-              } else {
-                bloc
-                  ..add(TimerTaskSelected(state.timerStateParams.task))
-                  ..add(TimerDurationSet(state.timerStateParams.baseDuration))
-                  ..add(TimerStarted(state.timerStateParams.duration));
-              }
-            } else if (state is TimerCompleted) {
-              getIt.get<AppLocalNotification>().sendCustomNotification(
-                  "Nice Job! 😎", "You completed a pomodoro");
-              bloc.add(
-                CurrentPomodoroToDatabaseSaved(
-                  PomodoroEntity(
-                    duration: TimerBloc.getDuration,
-                    dateTime: DateTime.now(),
-                  ),
-                  true,
-                ),
-              );
-            } else if (state is SaveCurrentPomodoroSuccess) {
-              getIt.get<AppLocalNotification>().sendCustomNotification(
-                  "Yay! 🥳", "Another Pomodoro for today!");
-              bloc
-                ..add(TimerReset())
-                ..add(TimerTaskDeSelected());
-            } else if (state is TimerInProgress) {
-              getIt
-                  .get<AppLocalNotification>()
-                  .sendBackgroundNotification(state.duration);
-            }
-          },
-        ),
       ],
       child: BlocBuilder<SettingsBloc, SettingsState>(
         builder: (context, state) {

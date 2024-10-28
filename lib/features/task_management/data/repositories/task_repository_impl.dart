@@ -1,11 +1,9 @@
 import "package:dartz/dartz.dart";
 import "package:pomodore/core/resources/params/task_params.dart";
 import "package:pomodore/features/task_management/data/data_sources/tasks_local_data_source.dart";
-import "package:pomodore/features/task_management/data/models/pomodoro_model.dart";
 import "package:pomodore/features/task_management/data/models/task_model.dart";
 import "package:pomodore/features/task_management/domain/entities/analysis_entity.dart";
 import "package:pomodore/features/task_management/domain/entities/daily_information_entity.dart";
-import "package:pomodore/features/task_management/domain/entities/pomodoro_entity.dart";
 import "package:pomodore/features/task_management/domain/repositories/task_repository.dart";
 
 import "../../domain/entities/task_entity.dart";
@@ -76,24 +74,6 @@ class TaskRepositoryImpl implements TaskRepository {
       final List<TaskEntity> list = TaskModel.sortTasksByDateTime(
           rawList.map((e) => TaskModel.fromModelToEntity(e)).toList());
       result = Right(list);
-    } else {
-      result = const Left("error");
-    }
-
-    return result;
-  }
-
-  @override
-  Future<Either<String, List<PomodoroEntity>>> getAllTodayPomodoro() async {
-    late Either<String, List<PomodoroEntity>> result;
-
-    final List<PomodoroModel>? rawList =
-        await localDataSource.getAllTodayPomodoroFromDb();
-
-    if (rawList != null) {
-      final List<PomodoroEntity> convertedList =
-          rawList.map((e) => PomodoroModel.pomodoroModelToEntity(e)).toList();
-      result = Right(convertedList);
     } else {
       result = const Left("error");
     }

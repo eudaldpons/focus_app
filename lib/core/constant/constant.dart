@@ -10,7 +10,7 @@ class AppConstant {
   static const iconSize = 20.0;
 
   // strings
-  static const appName = "Pmodoro";
+  static const appName = "Focus";
   static const fontFamily = "inter";
 
   // Hero tags
